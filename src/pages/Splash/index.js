@@ -6,7 +6,7 @@ const Splash = ({navigation}) => {
     setTimeout(() => {
       navigation.replace('WelcomeAuth');
     }, 2000);
-  }, []);
+  });
 
   return (
     <View>
