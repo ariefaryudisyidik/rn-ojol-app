@@ -2,14 +2,18 @@ import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
 import {LogBox, StyleSheet} from 'react-native';
 import Router from './router';
+import {Provider} from 'react-redux';
+import {store} from './redux';
 
 LogBox.ignoreLogs(['Remote debugger']);
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Router />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Router />
+      </NavigationContainer>
+    </Provider>
   );
 };
 

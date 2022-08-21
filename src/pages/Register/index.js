@@ -1,22 +1,21 @@
-import React, {useState} from 'react';
+import React, {useEffect} from 'react';
 import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
 import {IconBack, IllustrationRegister} from '../../assets';
 import {Button, Input} from '../../components/atoms';
+import {setForm} from '../../redux';
 import {colors} from '../../utils';
 
 const Register = () => {
-  const [form, setForm] = useState({
-    fullName: '',
-    email: '',
-    password: '',
-  });
+  const {form} = useSelector(state => state.RegisterReducer);
+  const dispatch = useDispatch();
 
   const sendData = () => {
     console.log('Data yang dikirim: ', form);
   };
 
-  const onInputChange = (value, input) => {
-    setForm({...form, [input]: value});
+  const onInputChange = (value, inputType) => {
+    dispatch(setForm(inputType, value));
   };
 
   return (
@@ -48,7 +47,7 @@ const Register = () => {
           placeholder="password"
           value={form.password}
           onChangeText={value => onInputChange(value, 'password')}
-          secureTextEntry
+          secureTextEntry={true}
         />
         <View style={styles.space(80)} />
         <Button title="Daftar" onPress={sendData} />
