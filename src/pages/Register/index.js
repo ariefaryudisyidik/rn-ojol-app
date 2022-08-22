@@ -1,12 +1,12 @@
-import React, {useEffect} from 'react';
-import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
-import {useSelector, useDispatch} from 'react-redux';
-import {IconBack, IllustrationRegister} from '../../assets';
+import React from 'react';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
+import {IllustrationRegister} from '../../assets';
 import {Button, Input} from '../../components/atoms';
 import {setForm} from '../../redux';
 import {colors} from '../../utils';
 
-const Register = () => {
+const Register = ({navigation}) => {
   const {form} = useSelector(state => state.RegisterReducer);
   const dispatch = useDispatch();
 
@@ -21,7 +21,7 @@ const Register = () => {
   return (
     <View style={styles.wrapper.page}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Image source={IconBack} style={styles.iconBack} />
+        <Button type="icon" name="back" onPress={() => navigation.goBack()} />
         <IllustrationRegister
           width={148}
           height={92}
@@ -62,7 +62,6 @@ const styles = StyleSheet.create({
   wrapper: {
     page: {flex: 1, padding: 20, backgroundColor: 'white'},
   },
-  iconBack: {width: 24, height: 24},
   illustration: {
     marginTop: 8,
   },
